@@ -1,3 +1,7 @@
+<!-- //inharitance (pewarisan) = variable dan method dari parent class bisa diwariskan ke child class nya
+//sehingga ketika membuat child class tdk perlu membuat variable/method lagi jika yg ingin dibuat sama
+//contoh pada baris 38 dan 46 -->
+
 <?php
 
 
@@ -31,20 +35,20 @@ class Produk {
 
 }
 
-class Komik extends Produk{
+class Komik extends Produk{     //cara membuat child class yg inharitance dari parent nya(nama_child extends nama_parent)
     public function getInfoProduk() {
         $str = "Komik : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga},-) - {$this->jmlHalaman} Halaman.";
         
-        return $str;
-    }
+        return $str;    //didalam class komik ga ada variable judul,penulis,penerbit namun masih bisa mengakses variable tersebut
+    }                   //karena inilah sifat inharitance = mewarisi
 }
 
-class Game extends Produk{
+class Game extends Produk{      //cara membuat child class yg inharitance dari parent nya(nama_child extends nama_parent)
     public function getInfoProduk() {
         $str = "Game : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga},-) ~ {$this->wktMain} Jam.";
         
-        return $str;
-    }
+        return $str;    //didalam class game ga ada variable judul,penulis,penerbit namun masih bisa mengakses variable tersebut
+    }                   //karena inilah sifat inharitance = mewarisi
 }
 
 

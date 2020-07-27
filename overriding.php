@@ -1,6 +1,6 @@
-//overriding = memungkinkan kita untuk membuat method yg sama dengan parent class nya
+<!-- //overriding = memungkinkan kita untuk membuat method yg sama dengan parent class nya
 //sehingga kita dapat mengeksekusi method yg kita maksudkan methodnya parent.
-//contoh pada baris 39, 45, 55, 61.
+//contoh pada baris 39, 45, 55, 61. -->
 
 <?php
 

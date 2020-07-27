@@ -1,7 +1,7 @@
 <?php
 
 
-class Produk {
+abstract class Produk {
     private $judul,
             $penulis,
             $penerbit,
@@ -62,7 +62,9 @@ class Produk {
         return "$this->penulis, $this->penerbit";
     }
 
-    public function getInfoProduk() {
+    abstract public function getInfoProduk();
+    
+    public function getInfo() {
         $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga},-)";
 
         return $str;
@@ -80,7 +82,7 @@ class Komik extends Produk{
     }
 
     public function getInfoProduk() {
-        $str = "Komik : " . parent::getInfoProduk() . " - {$this->jmlHalaman} Halaman.";
+        $str = "Komik : " . $this->getInfo() . " - {$this->jmlHalaman} Halaman.";
         
         return $str;
     }
@@ -96,7 +98,7 @@ class Game extends Produk{
     }
 
     public function getInfoProduk() {
-        $str = "Game : " . parent::getInfoProduk() . " ~ {$this->wktMain} Jam.";
+        $str = "Game : " . $this->getInfo() . " ~ {$this->wktMain} Jam.";
         
         return $str;
     }
@@ -105,9 +107,18 @@ class Game extends Produk{
 
 
 class CetakInfoProduk {
+    public $daftarProduk = [];
 
-    public function cetak ( Produk $produk ) {
-        $str = "{$produk->judul} | {$produk->getLabel()}, (Rp. {$produk->harga})";
+    public function tambahProduk ( Produk $produk ) {
+        $this->daftarProduk[] = $produk;
+    }
+
+    public function cetak () {
+        $str = "DAFTAR PRODUK : <br>";
+
+        foreach( $this->daftarProduk as $p ) {
+            $str .= "- {$p->getInfoProduk()} <br>";
+        }
         
         return $str;
     }
@@ -117,19 +128,11 @@ class CetakInfoProduk {
 $produk1 = new Komik("One Piece", "Eichiro Oda", "Shonen Jump", 45000, 100);
 $produk2 = new Game("Dota 2", "Lord Gaben", "Valve", 250000, 50);
 
-echo $produk1->getInfoProduk();
-echo "<br>";
-echo $produk2->getInfoProduk();
-echo "<hr>";
-
-
-$produk2->setDiskon(50);
-echo $produk2->getHarga();
-echo "<hr>";
-
-//$produk1->setJudul("Judul Baru");         //hilangkan comment untuk mengganti judul(fungsi set(mengatur))
-echo $produk1->getJudul();                  //fungsi get(mengambil)
+$cetakProduk = new CetakInfoProduk;
+$cetakProduk->tambahProduk( $produk1 );
+$cetakProduk->tambahProduk( $produk2 );
+echo $cetakProduk->cetak();
 
 
 
-
+?>

@@ -17,10 +17,7 @@ class Produk {
     }
     
     public function getLabel() {
-        return "Judul: $this->judul <br>
-                Penulis: $this->penulis <br>
-                Penerbit: $this->penerbit <br>
-                Harga: $this->harga";
+        return "$this->penulis, $this->penerbit";
     }
 
 
@@ -30,10 +27,9 @@ $produk1 = new Produk("One Piece", "Eichiro Oda", "Shonen Jump", 45000);
 $produk2 = new Produk("Dota 2", "Lord Gaben", "Valve", 250000 );
 $produk3 = new Produk("Monster Hunter");
 
-echo "Komik :" . "<br><br>" . $produk1->getLabel();
-echo "<br><br>";
-echo "Game :" . "<br><br>" . $produk2->getLabel();
-echo "<br><br>";
-echo "Game :" . "<br><br>" . $produk3->getLabel();
+echo "Komik :" . $produk1->getLabel();
+echo "<br>";
+echo "Game :" . $produk2->getLabel();
+
 
 
